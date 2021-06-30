@@ -40,7 +40,7 @@ public class AmazonWebServiceUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String fileName = "d:\\custom.jpg";
+        String fileName = "d:\\20210628_173218.jpg";
         File tempFile = new File(fileName);
         AmazonWebServiceUtil awsService = new AmazonWebServiceUtil();
         awsService.uploadFile(tempFile);
