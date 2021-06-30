@@ -27,7 +27,15 @@ public class AmazonWebServiceUtil {
     public void uploadFile(File file) {
         if (amazonS3 != null) {
             try {
-                PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, file.getName(), file);
+//                하위폴더 없을때 경로
+//                PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, file.getName(), file);
+//              하위폴더 있을때 경로 ex)S3 버킷 /test 가된다...
+                PutObjectRequest putObjectRequest = new PutObjectRequest(
+                        BUCKET_NAME + "/test", // 버킷 이하 하위 폴더까지 지정
+                        file.getName(), // 무조건 파일 명만!
+                        file // 실제 파일
+                );
+
                 putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead); // file permission
                 amazonS3.putObject(putObjectRequest); // upload file
             } catch (AmazonServiceException ase) {
